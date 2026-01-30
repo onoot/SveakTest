@@ -1,0 +1,38 @@
+@use '../../../styles//utils.scss' as *;
+
+.burger {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1100;
+}
+
+.burgerLine {
+  width: 24px;
+  height: 5px;
+  background: #000000;
+  opacity: 0.4;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  @include mq-up(lg){
+    display: none;
+  }
+  &:nth-child(2) {
+    margin: 3px 0;
+  }
+}
+
+.burger:hover {
+  .burgerLine {
+    opacity: 0.7;
+    
+  }
+}

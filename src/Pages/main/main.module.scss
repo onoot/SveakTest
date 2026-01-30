@@ -1,0 +1,202 @@
+@use "../../styles/utils" as *;
+
+.root {
+  flex: 1;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  position: relative;
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.4;
+    z-index: 0;
+    background: #D6BDFF;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    @include mq-between(sm, lg) {
+      background: #95D9FF;
+    }
+
+    @include mq-between(xxs, xs) {
+      background: #ADFCC8;
+    }
+
+    @include mq-between(tn, md) {
+      background: #95D9FF;
+    }
+
+    @include mq-between(xxs, tn) {
+    }
+
+    @include mq-down(xs) {
+      margin-top: -10px;
+      background: #ADFCC8;
+    }
+
+    @include mq-down(tn) {
+      background: #ADFCC8;
+      width: 97.5svw;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      width: stretch;
+      margin: 0 4px;
+    }
+  }
+}
+
+.content {
+  // padding: 20px;
+  margin-top: 26px;
+  flex: 1;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  position: relative;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  @include mq-up(lg) {
+    margin-left: 300px;
+    margin-top: 80px;
+  }
+}
+
+.listCard {
+  display: grid;
+  display: -ms-grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  gap: 20px;
+  -webkit-gap: 20px;
+  -moz-gap: 20px;
+  width: 100%;
+  
+  grid-template-columns: repeat(auto-fill, 150px);
+  -ms-grid-columns: 150px;
+  justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  
+  
+  @supports (display: grid) {
+    display: -ms-grid;
+    display: grid;
+  }
+  
+  @include mq-down(tn) {
+    grid-template-columns: repeat(2, 115px);
+    -ms-grid-columns: 115px 115px;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+  }
+  
+  // @include mq-down(sm) {
+  //   grid-template-columns: repeat(3, 115px);
+  //   -ms-grid-columns: 115px 115px 115px;
+  //   justify-content: center;
+  //   -webkit-box-pack: center;
+  //   -ms-flex-pack: center;
+  //   -webkit-justify-content: center;
+  // }
+  
+  @include mq-between(md, lg) {
+    grid-template-columns: repeat(3, 130px);
+    -ms-grid-columns: 130px 130px 130px;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+  }
+  
+  @include mq-between(lg, xl) {
+    grid-template-columns: repeat(4, 140px);
+    -ms-grid-columns: 140px 140px 140px 140px;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+  }
+  
+  @include mq-between(xl, xxl) {
+    grid-template-columns: repeat(5, 150px);
+    -ms-grid-columns: 150px 150px 150px 150px 150px;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+  }
+  
+  @include mq-up(xxl) {
+    grid-template-columns: repeat(auto-fill, 160px);
+    -ms-grid-columns: 160px;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+  }
+  
+  &:after {
+    content: '';
+    grid-column: 1 / -1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 999;
+    height: 0;
+  }
+}
+
+.cardContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 150px;
+  min-width: 115px;
+  height: fit-content;
+  
+  &:hover {
+    .card {
+      opacity: 0.15;
+      -webkit-opacity: 0.15;
+    }
+  }
+}
+
+.cardContainer {
+  position: relative;
+  overflow: hidden;
+  
+  max-width: 100%;
+  
+  min-width: 115px;
+  max-width: 150px;
+  width: 100%;
+  
+  justify-self: center;
+  -ms-grid-column-align: center;
+  -webkit-justify-self: center;
+  
+  &:hover {
+    .card {
+      opacity: 0.15;
+      -webkit-opacity: 0.15;
+    }
+  }
+}

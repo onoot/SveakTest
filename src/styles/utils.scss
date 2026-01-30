@@ -1,0 +1,217 @@
+@use "sass:map";
+
+$mq-breakpoints: (
+  tn: 384, 
+  xxs: 480, 
+  xs: 576, 
+  sm: 768, 
+  md: 992,
+  lg: 1200, 
+  xl: 1400, 
+  xxl: 1920, 
+  xxxl: 3000, 
+  max: 100000
+);
+
+@function breakpoint-max($name, $breakpoints: $mq-breakpoints) {
+  $max: map.get($breakpoints, $name);
+  @if $max and $max > 0 {
+    @return $max - 1;
+  }
+  @return null;
+}
+
+@function breakpoint-min($name, $breakpoints: $mq-breakpoints) {
+  $min: map.get($breakpoints, $name);
+  @if $min != 0 {
+    @return $min;
+  }
+  @return null;
+}
+
+@mixin tn {
+  $max: breakpoint-max(tn, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin xxs {
+  $max: breakpoint-max(xxs, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin xs {
+  $max: breakpoint-max(xs, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  $max: breakpoint-max(sm, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin md {
+  $max: breakpoint-max(md, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  $max: breakpoint-max(lg, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  $max: breakpoint-max(xl, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  $max: breakpoint-max(xxl, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin xxxl {
+  $max: breakpoint-max(xxxl, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin max {
+  $max: breakpoint-max(max, $mq-breakpoints);
+  @media(max-width: #{$max}px) {
+    @content;
+  }
+}
+
+@mixin mq-down($name, $breakpoints: $mq-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: #{$max}px) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin mq-between($lower, $upper, $breakpoints: $mq-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min and $max {
+    @media (min-width: #{$min}px) and (max-width: #{$max}px) {
+      @content;
+    }
+  } @else if $min {
+    @media (min-width: #{$min}px) {
+      @content;
+    }
+  } @else if $max {
+    @media (max-width: #{$max}px) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-up($name, $breakpoints: $mq-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: #{$min}px) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin grid-columns(
+  $tn: 2,
+  $sm: 2,
+  $md: 3,
+  $lg: 4,
+  $xl: 5,
+  $xxl: 6,
+  $xxxl: 7,
+  $max: 8
+) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  display: grid;
+  gap: 21px;
+  -webkit-gap: 21px;
+  -moz-gap: 21px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  -ms-grid-columns: (minmax(150px, 1fr))[auto-fill];
+  
+  @supports (display: grid) {
+    display: -ms-grid;
+    display: grid;
+  }
+  
+  @include tn {
+    grid-template-columns: repeat($tn, 1fr);
+    -ms-grid-columns: repeat($tn, 1fr);
+  }
+  
+  @include sm {
+    grid-template-columns: repeat($sm, 1fr);
+    -ms-grid-columns: repeat($sm, 1fr);
+  }
+  
+  @include md {
+    grid-template-columns: repeat($md, 1fr);
+    -ms-grid-columns: repeat($md, 1fr);
+  }
+  
+  @include lg {
+    grid-template-columns: repeat($lg, 1fr);
+    -ms-grid-columns: repeat($lg, 1fr);
+  }
+  
+  @include xl {
+    grid-template-columns: repeat($xl, 1fr);
+    -ms-grid-columns: repeat($xl, 1fr);
+  }
+  
+  @include xxl {
+    grid-template-columns: repeat($xxl, 1fr);
+    -ms-grid-columns: repeat($xxl, 1fr);
+  }
+  
+  @include xxxl {
+    grid-template-columns: repeat($xxxl, 1fr);
+    -ms-grid-columns: repeat($xxxl, 1fr);
+  }
+  
+  @include max {
+    grid-template-columns: repeat($max, 1fr);
+    -ms-grid-columns: repeat($max, 1fr);
+  }
+  
+  &:after {
+    content: '';
+    grid-column: 1 / -1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 999;
+    height: 0;
+  }
+}
