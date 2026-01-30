@@ -12,7 +12,14 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    }
   },
-  base: process.env.NODE_ENV === 'production' ? '/sveak-test-project/' : '/'
+  base: process.env.NODE_ENV === 'production' ? '/SveakTest/' : '/'
 });
